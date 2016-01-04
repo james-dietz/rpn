@@ -59,9 +59,10 @@ class RPN:
                 # Push number casted to float
                 self.stack.push(f)
         if not error:
-            print(",".join(inst.stack.items))
+            print(",".join([str(e) for e in self.stack.items]))
         else:
             print("Stack underflow")
+        self.stack.items = []
 
 
     def handle_op(self, op):
@@ -69,6 +70,7 @@ class RPN:
         fn = data[0]
         args = []
         # Get args from stack.
+        # Number of args popped is found in data[1]
         for i in range(data[1]):
             # Attempt to pop an item from the stack
             token = self.stack.pop()
