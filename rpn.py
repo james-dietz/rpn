@@ -38,11 +38,9 @@ class RPN:
             else:
                 # Push number casted to float
                 self.stack.push(f)
-        if not error:
-            return self.stack.items
-        else:
-            return "Stack underflow"
+        output = self.stack.items if not error else "Stack underflow"
         self.stack.items = []
+        return output
 
     def handle_op(self, op):
         data = self.operators[op]
