@@ -1,29 +1,14 @@
 __author__ = 'James'
+from stack import Stack
 import operator
 
 
-class Stack:
-    def __init__(self):
-        self.items = []
-
-    def is_empty(self):
-        return self.items == []
-
-    # Push an item to the end of the stack.
-    def push(self, item):
-        self.items.append(item)
-
-    # Pop the last item from the stack and return it.
-    def pop(self):
-        if not self.is_empty(): return self.items.pop()
-        else: return None
-
-    # Get the value of the top element in the stack.
-    def peek(self):
-        return None if self.is_empty() else self.items[-1]
-
-
 class RPN:
+    """
+    Instances of the RPN class maintain a stack and
+    expose methods for the evaluation of strings
+    in postfix (reverse Polish notation).
+    """
     def __init__(self):
         self.stack = Stack()
         # Data in format op: (fn, number of input args)
@@ -31,9 +16,13 @@ class RPN:
                           "-": (operator.sub, 2),
                           "*": (operator.mul, 2),
                           "/": (operator.truediv, 2)
-                         }
+                          }
 
     def evaluate(self, input_string):
+        """
+        Evaluates a string in reverse Polish notation.
+        ret List output: list of output values.
+        """
         # Initialise error flag
         error = False
         # Tokens delimited by spaces
@@ -58,14 +47,16 @@ class RPN:
             else:
                 # Push number casted to float
                 self.stack.push(f)
-        if not error:
-            print(",".join([str(e) for e in self.stack.items]))
-        else:
-            print("Stack underflow")
+        output = self.stack.items if not error else "Stack underflow"
         self.stack.items = []
-
+        return output
 
     def handle_op(self, op):
+        """
+        Evaluates an expression.
+        Takes an operator, pops arguments from the stack.
+        arg String op: operator
+        """
         data = self.operators[op]
         fn = data[0]
         args = []
