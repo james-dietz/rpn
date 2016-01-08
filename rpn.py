@@ -4,6 +4,11 @@ import operator
 
 
 class RPN:
+    """
+    Instances of the RPN class maintain a stack and
+    expose methods for the evaluation of strings
+    in postfix (reverse Polish notation).
+    """
     def __init__(self):
         self.stack = Stack()
         # Data in format op: (fn, number of input args)
@@ -14,6 +19,10 @@ class RPN:
                           }
 
     def evaluate(self, input_string):
+        """
+        Evaluates a string in reverse Polish notation.
+        ret List output: list of output values.
+        """
         # Initialise error flag
         error = False
         # Tokens delimited by spaces
@@ -43,6 +52,11 @@ class RPN:
         return output
 
     def handle_op(self, op):
+        """
+        Evaluates an expression.
+        Takes an operator, pops arguments from the stack.
+        arg String op: operator
+        """
         data = self.operators[op]
         fn = data[0]
         args = []

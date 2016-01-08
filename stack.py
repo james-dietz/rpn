@@ -8,15 +8,15 @@ class Stack:
     def is_empty(self):
         return self.items == []
 
-    # Push an item to the end of the stack.
     def push(self, item):
+        "Push an item to the end of the stack."
         self.items.append(item)
 
-    # Pop the last item from the stack and return it.
     def pop(self):
+        "Pop the last item from the stack and return it."
         if not self.is_empty(): return self.items.pop()
         else: return None
 
-    # Get the value of the top element in the stack.
     def peek(self):
+        "Get the value of the top element in the stack.":w
         return None if self.is_empty() else self.items[-1]
