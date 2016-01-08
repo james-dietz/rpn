@@ -18,5 +18,5 @@ class Stack:
         else: return None
 
     def peek(self):
-        "Get the value of the top element in the stack.":w
+        "Get the value of the top element in the stack."
         return None if self.is_empty() else self.items[-1]
